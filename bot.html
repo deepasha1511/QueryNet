@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query-bot</title>
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chatbot">
+            <div class="chatbot-header">
+                <h2>Query-Bot</h2>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="chatbot-footer">
+                <input type="text" id="user-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define your questions and answers
+        const qaPairs = {
+            "What is your name?": "My name is Query-bot.",
+            "How are you?": "I'm doing well, thank you!",
+            "What can you do?": "I can answer your questions and assist you with tasks.",
+            "I want the account details of JECRC for fee payment.":"Here are the account details of JECRC University: Account name-JECRC University. Account number-6143000100045293  IFSC code- PUNB0614300 Bank- Punjab National Bank, Sitapura, Jaipur",
+            "Can I pay my fee online":"Yes, you can pay your semester fee through NEFT, online banking, or via UPI.",
+            "I want information regarding the events and clubs":"You can go to the communities’ page on the same for all the information related to the events and communities.",
+            "What is the exam pattern of In Sem":"In Sem paper consists of three sections: 1. Section A which contains two 2-mark questions. 2. Section B which contains two 7-mark questions.3. Section C which contains two 11-mark questions.",
+            "What are the passing marks criteria of In Sem":"You need a minimum of 13 marks to pass you’re In Sem exam.",
+            "How many In Sems are conducted in one semester":"A total of 3 In Sems are conducted in which two of the In Sem are compulsory and 3rd In Sem is also known as markup examination. ",
+            "What is the exam pattern of End Sem":"End Sem paper consists of three sections: 1. Section A which contains five 2-mark questions. 2. Section B which contains five 7-mark questions. 3. Section C which contains five 11-mark questions. ",
+            "Who can be eligible for 3rd In Sem":"If you missed your 1st or 2nd In Sem due to some serious medical emergency you can appear for the 3rd In Sem exams by submitting your medical to your respective mentor.",
+            "Why is my ERP not working":"There can be some issues related internet …try logging out and logging in again on the website.",
+            "Where can I see my attendance ":"You can see your attendance on the college website.",
+            "what is the name of college website":"I have provided the link for the college website: https://jecrc.mastersofterp.in/iitmsv4eGq0RuNHb0G5WbhLmTKLmTO7YBcJ4RHuXxCNPvuIw=",
+            "Where can I see my semester result ":"You can see your results and marks on the official college website.",
+            "what is the minimum percentage criteria  for a scholarship ":"You need to maintain a minimum CGPA of 8 and a minimum percentage criteria of 75%.",
+            // Add more questions and answers as needed
+        };
+
+        // Function to display message in the chatbot body
+        function displayMessage(message) {
+            const chatbotBody = document.getElementById("chatbot-body");
+            const newMessage = document.createElement("div");
+            newMessage.textContent = message;
+            chatbotBody.appendChild(newMessage);
+        }
+
+        // Function to process user input and provide responses
+        function chatbot(input) {
+    // Convert input to lowercase for case-insensitive matching and remove leading/trailing spaces
+    input = input.toLowerCase().trim();
+
+    // Check if the input matches any question using regular expressions
+    for (const question in qaPairs) {
+        const regex = new RegExp(question.toLowerCase(), 'i'); // 'i' flag for case-insensitive matching
+        if (regex.test(input)) {
+            return qaPairs[question];
+        }
+    }
+
+    // If no matching question is found, provide a default response
+    return "I'm sorry, I don't understand that question.";
+}
+
+        // Function to handle key press event
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Function to send user message and display response
+        function sendMessage() {
+            const userInput = document.getElementById("user-input");
+            const userMessage = userInput.value;
+            displayMessage("You: " + userMessage);
+            userInput.value = "";
+            const response = chatbot(userMessage);
+            displayMessage("Querybot: " + response);
+        }
+    </script>
+
+</body>
+</html>
+

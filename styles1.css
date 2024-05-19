@@ -1,0 +1,25 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pyq {
+    background-color: #5199ac;
+    padding: 20px;
+    margin-bottom: 20px;
+    width:800px;
+    height:75px;
+    border-radius: 2rem;
+    box-shadow: 5px 5px;
+    text-align:center;
+   
+}
+
+.pyq h1 {
+    margin-top: 0;
+}
+a {
+    text-decoration: none; 
+    
+}
